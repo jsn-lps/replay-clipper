@@ -1,6 +1,25 @@
 {
   "dependencies": {
     "dotenv": "^16.0.3",
-    "obs-websocket-js": "^5.0.2"
-  }
+    "obs-websocket-js": "^5.0.2",
+    "postman-request": "^2.88.1-postman.32"
+  },
+  "name": "replay-clipper",
+  "description": "��#\u0000 \u0000r\u0000e\u0000p\u0000l\u0000a\u0000y\u0000-\u0000c\u0000l\u0000i\u0000p\u0000p\u0000e\u0000r\u0000\r\u0000 \u0000",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsn-lps/replay-clipper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsn-lps/replay-clipper/issues"
+  },
+  "homepage": "https://github.com/jsn-lps/replay-clipper#readme"
 }
