@@ -10,6 +10,7 @@ let clientID = process.env.CLIENT_ID
 let clientSecret = process.env.CLIENT_SECRET
 
 // TODO: 
+// useEffect for generating status code
 // FTUB 
 // RTST 
 // CITT
@@ -18,7 +19,7 @@ let clientSecret = process.env.CLIENT_SECRET
 const generateOauth = (url, callback) => {
 
     const options = {
-        uri: tokenURL,
+        uri: url,
         json: true,
         body:{
             client_id: clientID,
@@ -69,7 +70,7 @@ const getNewClips = (oauth, callback) => {
             return console.log(err);
         }
         clipData = JSON.parse(body).data
-        console.log(clipData)
+        console.log(clipData[0].video_id)
         })
     return clipData
 }
