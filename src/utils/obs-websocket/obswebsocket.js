@@ -22,3 +22,7 @@ export default async function obsConnect(obsIP, port) {
         return error.code, error.message
     }
 }
+
+export {
+    obs
+}

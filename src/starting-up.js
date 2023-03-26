@@ -18,7 +18,7 @@ export default async function startUp() {
     try { 
         await obsConnect(obsWebSocketIP, obsWebSocketPort)
             .then(
-            console.log('Successfully connected!')
+            // console.log('Successfully connected!')
         )
         // .then(
         //     accessToken = generateOauth(tokenURL, clientID, clientSecret, (res) => {

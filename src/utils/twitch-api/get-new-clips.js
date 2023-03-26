@@ -35,9 +35,9 @@ export default function getNewClips(oauth, clipsURL, clientID, broadcastID, call
             return console.log(err);
         }
         clipData = JSON.parse(body).data
-        clipData.map(i => {
-            console.log(i)
-            })
+        // clipData.map(i => {
+        //     console.log(i)
+        //     })
         // console.log(body)
             // callback(res)
         })
