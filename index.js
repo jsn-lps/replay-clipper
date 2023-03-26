@@ -1,5 +1,10 @@
 import dotenv from 'dotenv'
-import request from 'postman-request';
+// import request from 'postman-request';
+import generateOauth from './src/utils/twitch-api/generate-oauth.js';
+import OBSWebSocket from 'obs-websocket-js';
+import obsConnect from './src/utils/obs-websocket/obswebsocket.js'
+import getNewClips from './src/utils/twitch-api/get-new-clips.js';
+import { obsWebSocketIP, obsWebSocketPort } from './src/config/websocket-config.js'
 
 dotenv.config()
 
@@ -10,74 +15,29 @@ let clientID = process.env.CLIENT_ID
 let clientSecret = process.env.CLIENT_SECRET
 
 // TODO: 
-// useEffect for generating status code
 // FTUB 
 // RTST 
 // CITT
 
-// get OAuth token 
-const generateOauth = (url, callback) => {
+// replace later
 
-    const options = {
-        uri: url,
-        json: true,
-        body:{
-            client_id: clientID,
-            client_secret: clientSecret,
-            grant_type: 'client_credentials'
-        }
-    };
-    request.post(options, (err, res, body) => {
-        if(err) {
-                return console.log(err);
-            }
-        callback(res);
-        }
-    )
-};
+
+await obsConnect(obsWebSocketIP, obsWebSocketPort)
+
 
 // global token to be used in requests
 // CITT add condition to check if token already exists to prevent from always generating new ones
 var accessToken = ''
-generateOauth(tokenURL, (res) => {
+generateOauth(tokenURL, clientID, clientSecret, (res) => {
     accessToken = res.body.access_token
     return accessToken
 });
 
-// returns array of objects containing clips data
-const getNewClips = (oauth, callback) => {
 
-    let clipData; 
-
-    // date builder for RFC3339 compliance. Change to 1 after testing
-    const date = new Date()
-    date.setDate(new Date().getDate() - 7);
-    const startDate = date.toISOString();
-
-    // FTUB make this URL builder more dynamic later
-    let requestURL = clipsURL + "?broadcaster_id=" + broadcastID + "&first=20" + "&started_at=" + startDate
-    
-    const clipOptions = {
-        url: requestURL,
-        method: 'GET',
-        headers:{
-            "Authorization": "Bearer " + oauth,
-            "Client-ID": clientID,
-        }
-    }
-    request.get(clipOptions, (err, res, body) => {
-        if(err) {
-            return console.log(err);
-        }
-        clipData = JSON.parse(body).data
-        console.log(clipData[0].video_id)
-        })
-    return clipData
-}
 
 // RTST change to async/await later. setTimeout for testing
 setTimeout(() => {
-    getNewClips(accessToken, (err, res, body) => {
+    getNewClips(accessToken, clipsURL, clientID, broadcastID, (err, res, body) => {
     if(err) {
         return console.log(err);
     }
