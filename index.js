@@ -35,7 +35,7 @@ generateOauth(tokenURL, clientID, clientSecret, (res) => {
 
 
 
-// RTST change to async/await later. setTimeout for testing
+// RTST change to event handled execution. setTimeout for testing
 setTimeout(() => {
     getNewClips(accessToken, clipsURL, clientID, broadcastID, (err, res, body) => {
     if(err) {
