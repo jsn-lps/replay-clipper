@@ -18,5 +18,5 @@ export default function generateOauth(url, clientID, clientSecret, callback) {
             }
         callback(res);
         }
-    )
+        )
 };

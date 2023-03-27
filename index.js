@@ -4,10 +4,9 @@ import generateOauth from './src/utils/twitch-api/generate-oauth.js';
 import startUp from './src/starting-up.js';
 import getNewClips from './src/utils/twitch-api/get-new-clips.js';
 import { tokenURL } from './config/twitch-api-config.js';
-import {checkReplayBufferStatus} from './src/utils/obs-websocket/obswebsocketcommands.js'
 import { obsWebSocketIP, obsWebSocketPort } from './config/websocket-config.js';
 // import { obs } from './src/utils/obs-websocket/obswebsocket.js';
-
+import { toggleReplayBuffer } from './src/utils/obs-websocket/obswebsocketcommands.js';
 // import request from 'postman-request';
 // import OBSWebSocket from 'obs-websocket-js';
 // import obsConnect from './src/utils/obs-websocket/obswebsocket.js'
@@ -53,23 +52,8 @@ await obs.connect(`ws://${obsWebSocketIP}:${obsWebSocketPort}`).then(
         )
 
 setTimeout(() => {
-    const checkReplayBufferStatus = async() => {
-        const request = {
-            'request': 'GetReplayBufferStatus',
-            'message-id': 'get-replay-buffer-status',
-            'params': {},
-          };
-    
-        try {
-            // obs.call(request)
-            const {saveReplayBuffer} = await obs.call(request);
-            console.log(saveReplayBuffer)
-        } catch(error) {
-            console.error(`ERROR: ${error.code} ${error.message}`)
-        }
-    }
-    checkReplayBufferStatus()
-}, 2000)
+    toggleReplayBuffer()
+}, 1500)
 
 
 // RTST change to event handled execution. setTimeout for testing
@@ -80,3 +64,7 @@ setTimeout(() => {
 //     }
 //     })
 // }, 2000)
+
+export {
+    obs
+}

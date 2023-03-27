@@ -1,6 +1,8 @@
 import OBSWebSocket from 'obs-websocket-js';
 import obsConnect from './obswebsocket.js';
 import {obsWebSocketIP, obsWebSocketPort } from '../../../config/websocket-config.js';
+import { obs } from '../../../index.js';
+
 
 
  const updateSource = async() => {
@@ -16,43 +18,55 @@ import {obsWebSocketIP, obsWebSocketPort } from '../../../config/websocket-confi
     }
 }
 
-// GetReplayBufferStatus won't resolve for some reason. Maybe OBS 29 doesn't support? 
-const checkReplayBufferStatus = async() => {
-    const request = {
-        'request': 'GetReplayBufferStatus',
-        'message-id': 'get-replay-buffer-status',
-        'params': {},
-      };
 
-    try {
-        obs.call(request)
-        .then((data) => {
-          console.log('Replay buffer status:', data);
-          if (!data.isReplayBufferActive) {
-            console.log('Enabling replay buffer...');
-            obs.send('StartReplayBuffer');
-          }
-        })
-        .catch((error) => {
-          console.error('Error retrieving replay buffer status:', error);
-        });
-    } catch(error) {
-        console.error(`Couldn't update source: ${error.code} ${error.message}`)
-    }
+
+const saveReplayBuffer = async() => {
+  try {
+    await obs.call('SaveReplayBuffer');
+  } catch(error) {
+    console.error(`ERROR: ${error.code} ${error.message}`)
+  }
+
 }
 
+const toggleReplayBuffer = async() => {
+  let toggleReplayBufferData
+    try {
+      toggleReplayBufferData = await obs.call('ToggleReplayBuffer');
+      console.log(toggleReplayBufferData)
+  } catch(error) {
+      console.error(`ERROR: ${error.code} ${error.message}`)
+    }
+  }
 
-const {saveReplayBuffer} = await obs.call('SaveReplayBuffer');
-console.log(saveReplayBuffer)
+const GetReplayBufferStatus = async() => {
+  let getReplayBufferData
+    try {
+      getReplayBufferData = await obs.call('GetReplayBufferStatus');
+      console.log(getReplayBufferData)
+  } catch(error) {
+      console.error(`ERROR: ${error.code} ${error.message}`)
+    }
+  }
 
-/* Write functions for these
-ToggleReplayBuffer
-SaveReplayBuffer | 
-*/  
+const GetLastReplayBufferClip = async() => {
+  let replayBufferClipData
+  try {
+    replayBufferClipData = await obs.call('GetLastReplayBufferReplay');
+    console.log(replayBufferClipData)
+  } catch(error) {
+    console.error(`ERROR: ${error.code} ${error.message}`)
+  }
+}  
+
+
 
 
 export {
     updateSource,
-    checkReplayBufferStatus
+    saveReplayBuffer,
+    toggleReplayBuffer,
+    GetReplayBufferStatus,
+    GetLastReplayBufferClip,
 
 }
