@@ -1,7 +1,7 @@
 import request from 'postman-request';
 
 
-export default function generateOauth(url, clientID, clientSecret, callback) {
+export default async function generateOauth(url, clientID, clientSecret, callback) {
 
     const options = {
         uri: url,
@@ -16,6 +16,7 @@ export default function generateOauth(url, clientID, clientSecret, callback) {
         if(err) {
                 return console.log(err);
             }
+            console.log("OAUTH QUERIED SUCCESSFULLY")
         callback(res);
         }
         )

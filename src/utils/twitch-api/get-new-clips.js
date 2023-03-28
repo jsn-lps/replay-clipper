@@ -15,8 +15,6 @@ const createClipsRequestURL = (clipsURL, broadcastID, numberOfClips, numberOfDay
     return requestURL
 }
 
-
-
 export default function getNewClips(oauth, clipsURL, clientID, broadcastID, callback) {
 
     let clipData; 

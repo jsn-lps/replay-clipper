@@ -1,5 +1,15 @@
 import OBSWebSocket from 'obs-websocket-js';
 
+// connect to websocket and return object
+const obsSocketConnect = async() => {
+    const obs = new OBSWebSocket();
+    obs.on('ConnectionOpened', () => {
+        console.log("DOGGIES")
+
+    })
+    return obs
+}
+
 // univeral websocket calls WIP (low priority)
 
 // takes a string. returns an object or string
@@ -37,5 +47,5 @@ const obsActionCall = async(request, params) => {
 
 
 export {
-    
+    obsSocketConnect
 }

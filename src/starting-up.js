@@ -4,28 +4,40 @@ import OBSWebSocket from 'obs-websocket-js';
 import generateOauth from './utils/twitch-api/generate-oauth.js';
 import dotenv from 'dotenv'
 import { tokenURL } from '../config/twitch-api-config.js';
+import { obsSocketConnect } from './utils/obs-websocket/websocket-handler.js';
 
 dotenv.config()
 // returns true or false 
 // run on startup to ensure oauth generates properly and obs websocket can be conntected to 
 
-export default async function startUp() {
+
+
+async function startUp() {
     let clientID = process.env.CLIENT_ID;
     let clientSecret = process.env.CLIENT_SECRET;
-
     var accessToken = ''
 
+
     try { 
-        await obsConnect(obsWebSocketIP, obsWebSocketPort)
-            .then(
+
+        // await obsConnect(obsWebSocketIP, obsWebSocketPort)
+        //     .then(
             // console.log('Successfully connected!')
-        )
+        // )
         // .then(
         //     accessToken = generateOauth(tokenURL, clientID, clientSecret, (res) => {
         //         accessToken = res.body.access_token
         //         return accessToken
             // }))
+            return 
         } catch(error) {
         console.log(error)
     }
+    return accessToken
+}
+
+const obs = startUp()
+
+export default {
+    startUp
 }

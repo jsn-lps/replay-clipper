@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'
 import OBSWebSocket from 'obs-websocket-js';
 import generateOauth from './src/utils/twitch-api/generate-oauth.js';
+import { obsSocketConnect } from './src/utils/obs-websocket/websocket-handler.js';
 import startUp from './src/starting-up.js';
 import getNewClips from './src/utils/twitch-api/get-new-clips.js';
 import { tokenURL } from './config/twitch-api-config.js';
@@ -23,22 +24,27 @@ let clientSecret = process.env.CLIENT_SECRET
 // RTST 
 // CITT
 
+var accessToken
 const obs = new OBSWebSocket();
-obs.on('ConnectionOpened', () => {
+obs.on('ConnectionOpened', async() => {
     console.log("DOGGIES")
-
+    accessToken = await generateOauth(tokenURL, clientID, clientSecret, (res) => {
+        // set global variable to accessToken (probably shouldn't do this...)
+        accessToken = res.body.access_token
+    });
 })
+
+// const obs = await obsSocketConnect();
+
+
+
 // run on initial setup 
-// var accessToken = startUp()
+// startUp()
 // console.log(`outside access token ${accessToken}`)
 
 
 // global token to be used in requests
 // CITT add condition to check if token already exists to prevent from always generating new ones
-var accessToken = generateOauth(tokenURL, clientID, clientSecret, (res) => {
-    // set global variable to accessToken (probably shouldn't do this...)
-    accessToken = res.body.access_token
-});
 
 // startUp()
 
