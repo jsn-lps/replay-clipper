@@ -5,18 +5,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        
+        <ReplayClipper />
+
+
       </header>
     </div>
   );
@@ -25,5 +17,35 @@ function App() {
 export default App;
 
 
+function ReplayClipper(props) {
+  return <body class="PageWrapper"><MainWindow/></body>;
+}
 
+function MainWindow(props) {
 
+  return <body class="BodyContainer" >
+    <Navigation/>
+    <HubTab/>
+    
+    </body>;
+  
+}
+
+// change to grid
+function Navigation(props) {
+  return <div>
+    <ul class="NavBar">
+      <li class='NavElement'>Hub</li>
+      <li class='NavElement'>Clips</li>
+      <li class='NavElement'>Config</li>
+      <li class='NavElement'>About</li>
+      <li class='NavElement'>Help</li>
+    </ul>
+  </div>
+}
+
+function HubTab(props) {
+  return <div class="ContentWindow">
+    IM STUFF
+  </div>
+}
