@@ -1,5 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
 
 function App() {
   return (
@@ -17,6 +17,8 @@ function App() {
 export default App;
 
 
+
+// TESTING 
 function ReplayClipper(props) {
   return <body class="PageWrapper"><MainWindow/></body>;
 }
@@ -28,8 +30,8 @@ function MainWindow(props) {
     <HubTab/>
     
     </body>;
-  
 }
+
 
 // change to grid
 function Navigation(props) {
@@ -37,15 +39,48 @@ function Navigation(props) {
     <ul class="NavBar">
       <li class='NavElement'>Hub</li>
       <li class='NavElement'>Clips</li>
-      <li class='NavElement'>Config</li>
-      <li class='NavElement'>About</li>
-      <li class='NavElement'>Help</li>
+
     </ul>
   </div>
 }
 
+
+
+
+
 function HubTab(props) {
-  return <div class="ContentWindow">
-    IM STUFF
-  </div>
+
+  const [checked, setChecked] = useState(false);
+
+  // add function to change replay buffer to enabled / disabled
+  function handleReplayBufferToggleChange(event) {
+    setChecked(event.target.checked);
+    if (event.target.checked) {
+      console.log("enabled")
+    } else {
+      console.log("disabled")
+    }
+    
+    }
+
+    return <div class="ContentWindow">
+      <div class='leftContent'>
+      BANANA
+      </div>
+
+
+      <div class='rightContent'>
+
+      {/*  replay buffer status window */}
+        <div class="replayBufferStatus">Replay Buffer Status:
+        <label class="switch">
+          <input name="toggleReplayBuffer" type="checkbox" checked={checked} onChange={handleReplayBufferToggleChange}/>
+            <span class="button"></span>
+          </label>
+          </div>
+
+        <div></div>
+      </div>
+    </div>
+
 }

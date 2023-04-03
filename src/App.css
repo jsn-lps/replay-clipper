@@ -1,17 +1,5 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #282c34;
@@ -20,7 +8,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  /* font-size: calc(10px + 2vmin); */
   color: white;
 }
 
@@ -39,36 +27,30 @@
 
 .PageWrapper {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: space-between;
   width: 100vw;
   height: 100vh;
 }
 
 .BodyContainer {
-  display:flex;
+  width: 43em;
+  height: auto; 
+  margin: auto; 
+  display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  justify-content: space-between;
-  margin: auto;
-  padding: auto;
-  width: 25em;
-  height: 20em;
-  border: 2px solid black;
-  background-color: #babebe;
-  border-radius: 30px;
+  border-radius: 10px 10px 40px 40px;
+  background-color: #31343a;
+  /* border: 2px solid rgb(43, 226, 98); */
 }
 
 .NavBar {
   display: flex;
-  /* flex-direction: row; */
-  /* position: relative; */
-  /* overflow: hidden; */
-  /* margin: 0; */
   padding: 0;
-  /* width: 100%; */
-  /* width: 95%; */
-  /* height: 100%; */
+  height: 100%;
+  /* margin: auto; */
+  margin-top: 1%;
+  /* background-color: #3fdd31; */
   /* border: 2px solid blueviolet; */
 }
 
@@ -80,12 +62,99 @@
 
 .ContentWindow {
   display: grid;
+  grid-template-columns: 30% 1fr;
+  grid-template-rows: 100%; /* set the height of the grid to 100% */
   position: relative;
-  margin: auto;
+  align-items: center;
+  flex-grow: 1;
+  margin-top: .5em;
   padding: 0;
   width: 100%;
-  height: 85%;
+  height: 30em;
   /* border: 2px solid red; */
   background-color: #d8dcdd;
-  border-radius: 10px 20px 20px 20px;
+  border-radius: 20px 20px 40px 40px;
+}
+
+.leftContent {
+  display: flex;
+  background-color: #ccc;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  height: 98%;
+  border-radius: 25px 10px 10px 25px;
+}
+
+.rightContent {
+  display: flex;
+  /* background-color: #ccc; */
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  height: 98%;
+  border-radius: 10px 25px 25px 10px;
+}
+
+/* The switch - the box around the button */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.button {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.button:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .button {
+  background-color: #2196F3;
+}
+
+input:focus + .button {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .button:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded button */
+.button {
+  border-radius: 34px;
+}
+
+.button:before {
+  border-radius: 50%;
 }
