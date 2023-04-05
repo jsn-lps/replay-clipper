@@ -1,9 +1,9 @@
 import obsConnect from './utils/obs-websocket/obswebsocket.js';
-import { obsWebSocketIP, obsWebSocketPort } from '../config/websocket-config.js';
+import { obsWebSocketIP, obsWebSocketPort } from './config/websocket-config.js';
 import OBSWebSocket from 'obs-websocket-js';
 import generateOauth from './utils/twitch-api/generate-oauth.js';
 import dotenv from 'dotenv'
-import { tokenURL } from '../config/twitch-api-config.js';
+import { tokenURL } from './config/twitch-api-config.js';
 import { obsSocketConnect } from './utils/obs-websocket/websocket-handler.js';
 
 dotenv.config()

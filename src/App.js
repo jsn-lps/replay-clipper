@@ -1,5 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
+import { tokenURL, clipsURL } from './config/twitch-api-config';
+import generateOauth from './utils/twitch-api/generate-oauth';
 
 function App() {
   return (
@@ -15,6 +17,19 @@ function App() {
 }
 
 export default App;
+
+
+
+
+let obsWebSocket = {
+  accessToken: 'banana',
+  obsWebSocketIP: "192.168.1.228",
+  obsWebSocketPort: "4455",
+  tokenURL: tokenURL,
+  clipsURL: clipsURL,
+  clientID: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET
+}
 
 
 
@@ -83,4 +98,14 @@ function HubTab(props) {
       </div>
     </div>
 
+}
+
+
+function ReplayBufferStatusToggle (props) {
+
+    
+
+  return <div>
+
+  </div>
 }

@@ -1,7 +1,7 @@
 import OBSWebSocket from 'obs-websocket-js';
 import obsConnect from './obswebsocket.js';
-import {obsWebSocketIP, obsWebSocketPort } from '../../../config/websocket-config.js';
-import { obs } from '../../../index.js';
+import {obsWebSocketIP, obsWebSocketPort } from '../../config/websocket-config.js';
+import { obs } from '../../../2-index.js';
 
 
 
